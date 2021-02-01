@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.tornado.datav.mapper.ComponentTabDataMapper">
+
+    <resultMap id="componentTabDataMapperMap" type="pers.tornado.datav.entity.ComponentTabData">
+        <id column="showDataID" property="showDataID" />
+        <result column="className" property="className" />
+        <result column="disabled" property="disabled"/>
+        <collection column="showDataID" property="showData" select="pers.tornado.datav.mapper.ComponentTabDataDetailMapper.selectByShowDataID" />
+    </resultMap>
+
+    <select id="getAllComponentTabData" resultMap="componentTabDataMapperMap">
+        select * from componentTabData
+        where disabled = 0
+    </select>
+
+</mapper>
