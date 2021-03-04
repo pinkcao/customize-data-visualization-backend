@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.RestController;
 import pers.tornado.datav.service.ComponentTabDataService;
 
 @RestController
-@RequestMapping("/componentTabData")
+@RequestMapping("/api/componentCol")
 public class ComponentTabDataController {
 
     @Autowired
     private ComponentTabDataService componentTabDataService;
 
-    @RequestMapping("/getAll")
+    @RequestMapping("/getComponentTabData")
     public Object getComponentTabData(){
         return componentTabDataService.getComponentTabData();
     }
