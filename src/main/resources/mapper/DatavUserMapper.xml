@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.tornado.datav.mapper.DatavUserMapper">
+
+    <resultMap id="DatavUserMapperMap" type="pers.tornado.datav.entity.DatavUser">
+        <id column="userID" property="userID" />
+        <result column="userAccount" property="userAccount" />
+        <result column="userPassword" property="userPassword"/>
+        <result column="userEmail" property="userEmail"/>
+        <result column="disabled" property="disabled"/>
+    </resultMap>
+
+    <select id="getAllDatavUser" resultMap="DatavUserMapperMap">
+        select * from datav_user
+        where disabled = 0
+    </select>
+
+    <select id="getOneDataUser" resultMap="DatavUserMapperMap">
+        select * from datav_user
+        where userAccount = #{userAccount} and userPassword = #{userPassword} and disabled = 0
+    </select>
+
+    <select id="validateAccount" resultType="java.lang.Integer">
+        select count(*) from datav_user
+        where userAccount = #{userAccount}
+    </select>
+
+    <insert id="insertOneUser" parameterType="pers.tornado.datav.entity.DatavUser">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="userID">
+            select last_insert_id()
+        </selectKey>
+        insert into datav_user (userAccount, userPassword, userEmail)
+        values (#{userAccount}, #{userPassword}, #{userEmail})
+    </insert>
+</mapper>
