@@ -23,4 +23,26 @@
         select * from datav_template
         where userID =#{userID}
     </select>
+
+    <select id="getRef" resultType="pers.tornado.datav.entity.DatavTemplateScreenStretchRef">
+        select * from datav_template_screen_stretch_ref
+    </select>
+
+    <insert id="insertUserTemplate" parameterType="pers.tornado.datav.entity.DatavTemplate">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="templateID">
+            select last_insert_id()
+        </selectKey>
+        insert into datav_template (userID) values (#{userID})
+    </insert>
+
+    <insert id="insertUserTemplateScreenDef" parameterType="Integer">
+        insert into datav_template_screendef (templateID, screenIndex, screenTitle, screenType, screenValue) VALUES
+        (#{templateID}, 0, "页面宽度：", "inputNumber", 1920),
+        (#{templateID}, 1, "页面高度：", "inputNumber", 1080);
+    </insert>
+
+    <update id="spliceTemplate" parameterType="pers.tornado.datav.entity.DatavTemplate">
+        update datav_template set disabled = 1
+        where userID =#{userID} and templateID =#{templateID}
+    </update>
 </mapper>

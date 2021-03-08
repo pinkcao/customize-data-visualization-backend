@@ -7,7 +7,7 @@ public class DatavTemplate {
     private int templateID;
     private int userID;
     private String templatePicUrl;
-    private String screenStretch;
+    private int screenStretch;
     private List<DatavTemplateScreendef> screendef;
     private String backgroundColor;
     private String backgroundImage;
@@ -30,7 +30,7 @@ public class DatavTemplate {
                 '}';
     }
 
-    public DatavTemplate(int templateID, int userID, String templatePicUrl, String screenStretch, List<DatavTemplateScreendef> screendef, String backgroundColor, String backgroundImage, int disabled) {
+    public DatavTemplate(int templateID, int userID, String templatePicUrl, int screenStretch, List<DatavTemplateScreendef> screendef, String backgroundColor, String backgroundImage, int disabled) {
         this.templateID = templateID;
         this.userID = userID;
         this.templatePicUrl = templatePicUrl;
@@ -65,11 +65,11 @@ public class DatavTemplate {
         this.templatePicUrl = templatePicUrl;
     }
 
-    public String getScreenStretch() {
+    public int getScreenStretch() {
         return screenStretch;
     }
 
-    public void setScreenStretch(String screenStretch) {
+    public void setScreenStretch(int screenStretch) {
         this.screenStretch = screenStretch;
     }
 

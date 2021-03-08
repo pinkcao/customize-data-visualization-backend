@@ -2,7 +2,7 @@ package pers.tornado.datav.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import pers.tornado.datav.entity.DatavTemplate;
-import pers.tornado.datav.entity.DatavUser;
+import pers.tornado.datav.entity.DatavTemplateScreenStretchRef;
 
 import java.util.List;
 
@@ -10,4 +10,8 @@ import java.util.List;
 public interface DatavTemplateMapper {
     List<DatavTemplate> getAllDatavTemplate();
     List<DatavTemplate> getDatavUserTemplate(int userID);
+    List<DatavTemplateScreenStretchRef> getRef();
+    int insertUserTemplate(DatavTemplate datavTemplate);
+    int insertUserTemplateScreenDef(int templateID);
+    int spliceTemplate(DatavTemplate datavTemplate);
 }
