@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.tornado.datav.mapper.DatavTemplateComponentStyleMapper">
+    
+    <resultMap id="DatavTemplateComponentStyleMap" type="pers.tornado.datav.entity.DatavTemplateComponentStyle">
+        <id column="templateID" property="templateID" />
+        <result column="component_opacity" property="opacity"></result>
+        <result column="component_legendvis" property="legendvis"></result>
+        <result column="component_titlevis" property="titlevis"></result>
+        <result column="component_titlepos" property="titlepos"></result>
+
+    </resultMap>
+
+    <resultMap id="DatavTemplateComponentStyleWithoutIDMap" type="pers.tornado.datav.entity.DatavTemplateComponentStyle">
+        <result column="component_opacity" property="opacity"></result>
+        <result column="component_legendvis" property="legendvis"></result>
+        <result column="component_titlevis" property="titlevis"></result>
+        <result column="component_titlepos" property="titlepos"></result>
+    </resultMap>
+
+</mapper>
