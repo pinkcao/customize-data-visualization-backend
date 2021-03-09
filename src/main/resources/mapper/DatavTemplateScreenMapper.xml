@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.tornado.datav.mapper.DatavTemplateScreenMapper">
+
+    <resultMap id="DatavTemplateScreendefMapperMap" type="pers.tornado.datav.entity.DatavTemplateScreendef">
+        <id column="templateID" property="templateID" />
+        <result column="screenIndex" property="index"/>
+        <result column="screenTitle" property="title"/>
+        <result column="screenType" property="type"/>
+        <result column="screenValue" property="value"/>
+    </resultMap>
+
+    <resultMap id="SingleDatavTemplateScreendefMapperMap" type="pers.tornado.datav.entity.DatavTemplateScreendef">
+        <result column="screenIndex" property="index"/>
+        <result column="screenTitle" property="title"/>
+        <result column="screenType" property="type"/>
+        <result column="screenValue" property="value"/>
+    </resultMap>
+
+    <select id="getTemplateScreendefWithID" resultMap="DatavTemplateScreendefMapperMap">
+        select * from datav_template_screendef
+        where templateID =#{value}
+    </select>
+
+    <select id="getScreendefWithID" resultMap="SingleDatavTemplateScreendefMapperMap">
+        select * from datav_template_screendef
+        where templateID =#{templateID}
+    </select>
+
+    <update id="updateScreendefWithID" parameterType="pers.tornado.datav.entity.DatavTemplateScreendef">
+        update datav_template_screendef set screenValue =#{value}
+        where templateID =#{templateID} and screenIndex =#{index}
+    </update>
+
+    <select id="getScreenStretchWithID" resultType="Integer">
+        select screenStretch from datav_template
+        where templateID =#{templateID}
+    </select>
+</mapper>

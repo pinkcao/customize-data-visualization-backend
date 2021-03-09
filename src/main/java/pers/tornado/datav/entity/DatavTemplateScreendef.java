@@ -3,28 +3,28 @@ package pers.tornado.datav.entity;
 public class DatavTemplateScreendef {
 
     private int templateID;
-    private int screenIndex;
-    private String screenTitle;
-    private String screenType;
-    private int screenValue;
+    private int index;
+    private String title;
+    private String type;
+    private int value;
+
+    public DatavTemplateScreendef(int templateID, int index, String title, String type, int value) {
+        this.templateID = templateID;
+        this.index = index;
+        this.title = title;
+        this.type = type;
+        this.value = value;
+    }
 
     @Override
     public String toString() {
         return "DatavTemplateScreendef{" +
                 "templateID=" + templateID +
-                ", screenIndex=" + screenIndex +
-                ", screenTitle='" + screenTitle + '\'' +
-                ", screenType='" + screenType + '\'' +
-                ", screenValue=" + screenValue +
+                ", index=" + index +
+                ", title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", value=" + value +
                 '}';
-    }
-
-    public DatavTemplateScreendef(int templateID, int screenIndex, String screenTitle, String screenType, int screenValue) {
-        this.templateID = templateID;
-        this.screenIndex = screenIndex;
-        this.screenTitle = screenTitle;
-        this.screenType = screenType;
-        this.screenValue = screenValue;
     }
 
     public int getTemplateID() {
@@ -35,38 +35,45 @@ public class DatavTemplateScreendef {
         this.templateID = templateID;
     }
 
-    public int getScreenIndex() {
-        return screenIndex;
+    public int getIndex() {
+        return index;
     }
 
-    public void setScreenIndex(int screenIndex) {
-        this.screenIndex = screenIndex;
+    public void setIndex(int index) {
+        this.index = index;
     }
 
-    public String getScreenTitle() {
-        return screenTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setScreenTitle(String screenTitle) {
-        this.screenTitle = screenTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getScreenType() {
-        return screenType;
+    public String getType() {
+        return type;
     }
 
-    public void setScreenType(String screenType) {
-        this.screenType = screenType;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getScreenValue() {
-        return screenValue;
+    public int getValue() {
+        return value;
     }
 
-    public void setScreenValue(int screenValue) {
-        this.screenValue = screenValue;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     public DatavTemplateScreendef() {
+    }
+
+    public DatavTemplateScreendef(int index, String title, String type, int value) {
+        this.index = index;
+        this.title = title;
+        this.type = type;
+        this.value = value;
     }
 }

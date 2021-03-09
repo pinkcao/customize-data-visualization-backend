@@ -19,7 +19,7 @@ public class DatavTemplateController {
     @Autowired
     private DatavTemplateService datavTemplateService;
 
-    private List<DatavTemplateScreenStretchRef> refs;
+    public static List<DatavTemplateScreenStretchRef> refs;
 
 //    {
 //        refs = datavTemplateService.getRef();

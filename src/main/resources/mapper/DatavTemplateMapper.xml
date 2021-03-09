@@ -11,7 +11,7 @@
         <result column="backgroundColor" property="backgroundColor"/>
         <result column="backgroundImage" property="backgroundImage"/>
         <result column="disabled" property="disabled"/>
-        <collection column="templateID" property="screendef" select="pers.tornado.datav.mapper.DatavTemplateScreendefMapper.getTemplateScreendefWithID"/>
+        <collection column="templateID" property="screendef" select="pers.tornado.datav.mapper.DatavTemplateScreenMapper.getTemplateScreendefWithID"/>
     </resultMap>
 
     <select id="getAllDatavTemplate" resultMap="DatavTemplateMapperMap">
@@ -21,7 +21,7 @@
 
     <select id="getDatavUserTemplate" resultMap="DatavTemplateMapperMap">
         select * from datav_template
-        where userID =#{userID}
+        where userID =#{userID} and disabled = 0
     </select>
 
     <select id="getRef" resultType="pers.tornado.datav.entity.DatavTemplateScreenStretchRef">
