@@ -3,6 +3,7 @@ package pers.tornado.datav.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.tornado.datav.entity.DatavTemplate;
+import pers.tornado.datav.entity.DatavTemplateBackgroundVo;
 import pers.tornado.datav.entity.DatavTemplateScreenStretchRef;
 import pers.tornado.datav.entity.DatavUser;
 import pers.tornado.datav.mapper.DatavTemplateMapper;
@@ -44,6 +45,11 @@ public class DatavTemplateServiceImpl implements DatavTemplateService {
     @Override
     public int spliceTemplate(DatavTemplate datavTemplate) {
         return datavTemplateMapper.spliceTemplate(datavTemplate);
+    }
+
+    @Override
+    public DatavTemplate getOneTemplate(int templateID) {
+        return datavTemplateMapper.getOneTemplate(templateID);
     }
 
 }

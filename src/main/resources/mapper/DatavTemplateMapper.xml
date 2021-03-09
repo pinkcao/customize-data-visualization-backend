@@ -45,4 +45,9 @@
         update datav_template set disabled = 1
         where userID =#{userID} and templateID =#{templateID}
     </update>
+
+    <select id="getOneTemplate" resultMap="DatavTemplateMapperMap">
+        select * from datav_template
+        where templateID =#{templateID}
+    </select>
 </mapper>

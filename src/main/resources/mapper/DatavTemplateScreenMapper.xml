@@ -37,4 +37,14 @@
         select screenStretch from datav_template
         where templateID =#{templateID}
     </select>
+
+    <update id="updateScreenStretchWithID" parameterType="pers.tornado.datav.entity.DatavTemplate">
+        update datav_template set screenStretch =#{screenStretch}
+        where templateID =#{templateID}
+    </update>
+
+    <update id="updateBackgroundWithID" parameterType="pers.tornado.datav.entity.DatavTemplateBackgroundVo">
+        update datav_template set backgroundColor =#{backgroundColor}, backgroundImage =#{backgroundImage}
+        where templateID =#{templateID}
+    </update>
 </mapper>

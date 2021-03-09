@@ -2,6 +2,8 @@ package pers.tornado.datav.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pers.tornado.datav.entity.DatavTemplate;
+import pers.tornado.datav.entity.DatavTemplateBackgroundVo;
 import pers.tornado.datav.entity.DatavTemplateScreendef;
 import pers.tornado.datav.mapper.DatavTemplateScreenMapper;
 import pers.tornado.datav.service.DatavTemplateScreenService;
@@ -25,5 +27,15 @@ public class DatavTemplateScreenServiceImpl implements DatavTemplateScreenServic
     @Override
     public int getScreenStretchWithID(int templateID) {
         return datavTemplateScreenMapper.getScreenStretchWithID(templateID);
+    }
+
+    @Override
+    public int updateScreenStretchWithID(DatavTemplate datavTemplate) {
+        return datavTemplateScreenMapper.updateScreenStretchWithID(datavTemplate);
+    }
+
+    @Override
+    public int updateBackgroundWithID(DatavTemplateBackgroundVo datavTemplateBackgroundVo) {
+        return  datavTemplateScreenMapper.updateBackgroundWithID(datavTemplateBackgroundVo);
     }
 }

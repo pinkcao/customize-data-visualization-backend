@@ -10,6 +10,7 @@ import java.util.List;
 public interface DatavTemplateMapper {
     List<DatavTemplate> getAllDatavTemplate();
     List<DatavTemplate> getDatavUserTemplate(int userID);
+    DatavTemplate getOneTemplate(int templateID);
     List<DatavTemplateScreenStretchRef> getRef();
     int insertUserTemplate(DatavTemplate datavTemplate);
     int insertUserTemplateScreenDef(int templateID);
