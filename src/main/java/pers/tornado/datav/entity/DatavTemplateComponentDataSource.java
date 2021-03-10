@@ -1,10 +1,11 @@
 package pers.tornado.datav.entity;
 
-public class DatavTemplateComponentDatasource {
+public class DatavTemplateComponentDataSource {
 
     private String data;
+    private String dataSourceOptions;
     private String dataSourceType;
-    private int APISwitch;
+    private boolean APISwitch;
     private String APIURL;
     private String APIMethod;
     private int APIInterval;
@@ -15,6 +16,7 @@ public class DatavTemplateComponentDatasource {
     public String toString() {
         return "DatavTemplateComponentDatasource{" +
                 "data='" + data + '\'' +
+                ", dataSourceOptions='" + dataSourceOptions + '\'' +
                 ", dataSourceType='" + dataSourceType + '\'' +
                 ", APISwitch=" + APISwitch +
                 ", APIURL='" + APIURL + '\'' +
@@ -23,6 +25,20 @@ public class DatavTemplateComponentDatasource {
                 ", APIHeader='" + APIHeader + '\'' +
                 ", IntervalID=" + IntervalID +
                 '}';
+    }
+
+    public String getDataSourceOptions() {
+        return dataSourceOptions;
+    }
+    public boolean isAPISwitch() {
+        return APISwitch;
+    }
+
+    public void setAPISwitch(boolean APISwitch) {
+        this.APISwitch = APISwitch;
+    }
+    public void setDataSourceOptions(String dataSourceOptions) {
+        this.dataSourceOptions = dataSourceOptions;
     }
 
     public String getData() {
@@ -39,14 +55,6 @@ public class DatavTemplateComponentDatasource {
 
     public void setDataSourceType(String dataSourceType) {
         this.dataSourceType = dataSourceType;
-    }
-
-    public int getAPISwitch() {
-        return APISwitch;
-    }
-
-    public void setAPISwitch(int APISwitch) {
-        this.APISwitch = APISwitch;
     }
 
     public String getAPIURL() {
@@ -89,17 +97,7 @@ public class DatavTemplateComponentDatasource {
         IntervalID = intervalID;
     }
 
-    public DatavTemplateComponentDatasource() {
+    public DatavTemplateComponentDataSource() {
     }
 
-    public DatavTemplateComponentDatasource(String data, String dataSourceType, int APISwitch, String APIURL, String APIMethod, int APIInterval, String APIHeader, int intervalID) {
-        this.data = data;
-        this.dataSourceType = dataSourceType;
-        this.APISwitch = APISwitch;
-        this.APIURL = APIURL;
-        this.APIMethod = APIMethod;
-        this.APIInterval = APIInterval;
-        this.APIHeader = APIHeader;
-        IntervalID = intervalID;
-    }
 }

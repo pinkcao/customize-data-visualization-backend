@@ -1,7 +1,5 @@
 package pers.tornado.datav.entity;
 
-import java.util.Map;
-
 public class DatavTemplateComponent {
 
     private int templateID;
@@ -17,27 +15,11 @@ public class DatavTemplateComponent {
     private boolean resizable;
     private boolean parentLimitation;
     private boolean active;
-    private boolean ifshow;
+    private boolean disabled;
     private int index;
     private int zindex;
-    private Map<String, Object> dataSource;
-    private Map<String, Object> style;
-
-    public Map<String, Object> getDataSource() {
-        return dataSource;
-    }
-
-    public void setDataSource(Map<String, Object> dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public Map<String, Object> getStyle() {
-        return style;
-    }
-
-    public void setStyle(Map<String, Object> style) {
-        this.style = style;
-    }
+    private DatavTemplateComponentDataSource dataSource;
+    private DatavTemplateComponentStyle style;
 
     @Override
     public String toString() {
@@ -55,12 +37,36 @@ public class DatavTemplateComponent {
                 ", resizable=" + resizable +
                 ", parentLimitation=" + parentLimitation +
                 ", active=" + active +
-                ", ifshow=" + ifshow +
+                ", disabled=" + disabled +
                 ", index=" + index +
                 ", zindex=" + zindex +
                 ", dataSource=" + dataSource +
                 ", style=" + style +
                 '}';
+    }
+
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+
+    public DatavTemplateComponentDataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DatavTemplateComponentDataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public void setStyle(DatavTemplateComponentStyle style) {
+        this.style = style;
+    }
+
+    public DatavTemplateComponentStyle getStyle() {
+        return style;
     }
 
     public int getTemplateID() {
@@ -165,14 +171,6 @@ public class DatavTemplateComponent {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public boolean isIfshow() {
-        return ifshow;
-    }
-
-    public void setIfshow(boolean ifshow) {
-        this.ifshow = ifshow;
     }
 
     public int getIndex() {

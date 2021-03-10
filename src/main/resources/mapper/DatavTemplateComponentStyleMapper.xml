@@ -5,18 +5,30 @@
     
     <resultMap id="DatavTemplateComponentStyleMap" type="pers.tornado.datav.entity.DatavTemplateComponentStyle">
         <id column="templateID" property="templateID" />
-        <result column="component_opacity" property="opacity"></result>
-        <result column="component_legendvis" property="legendvis"></result>
-        <result column="component_titlevis" property="titlevis"></result>
-        <result column="component_titlepos" property="titlepos"></result>
+        <id column="component_index" property="index"/>
+        <result column="component_opacity" property="opacity"/>
+        <result column="component_legendvis" property="legendvis"/>
+        <result column="component_titlevis" property="titlevis"/>
+        <result column="component_titlepos" property="titlepos"/>
 
     </resultMap>
 
     <resultMap id="DatavTemplateComponentStyleWithoutIDMap" type="pers.tornado.datav.entity.DatavTemplateComponentStyle">
-        <result column="component_opacity" property="opacity"></result>
-        <result column="component_legendvis" property="legendvis"></result>
-        <result column="component_titlevis" property="titlevis"></result>
-        <result column="component_titlepos" property="titlepos"></result>
+        <result column="component_opacity" property="opacity"/>
+        <result column="component_legendvis" property="legendvis"/>
+        <result column="component_titlevis" property="titlevis"/>
+        <result column="component_titlepos" property="titlepos"/>
     </resultMap>
 
+    <select id="selectStyleByIndex" resultMap="DatavTemplateComponentStyleWithoutIDMap">
+        select * from datav_template_component_style
+        where templateID =#{templateID} and component_index =#{component_index}
+    </select>
+
+
+    <insert id="insertOneStyle" parameterType="pers.tornado.datav.entity.DatavTemplateComponentDataSource">
+        insert into datav_template_component_style (templateID, component_index) values
+        (#{templateID}, #{index})
+    </insert>
+    
 </mapper>

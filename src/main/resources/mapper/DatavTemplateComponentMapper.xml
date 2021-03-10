@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.tornado.datav.mapper.DatavTemplateComponentMapper">
+    
+    <resultMap id="DatavTemplateComponentMap" type="pers.tornado.datav.entity.DatavTemplateComponent">
+        <id column="templateID" property="templateID" />
+        <id column="component_index" property="index"/>
+        <result column="component_name" property="name"/>
+        <result column="component_title" property="title"/>
+        <result column="component_subTitle" property="subTitle"/>
+        <result column="component_width" property="width"/>
+        <result column="component_height" property="height"/>
+        <result column="component_top" property="top"/>
+        <result column="component_left" property="left"/>
+        <result column="component_deg" property="deg"/>
+        <result column="component_draggable" property="draggable"/>
+        <result column="component_resizable" property="resizable"/>
+        <result column="component_parentLimitation" property="parentLimitation"/>
+        <result column="component_active" property="active"/>
+        <result column="component_zindex" property="zindex"/>
+        <result column="disabled" property="disabled"/>
+        <association property="dataSource" column="{templateID = templateID, component_index = component_index}" select="pers.tornado.datav.mapper.DatavTemplateComponentDataSourceMapper.selectDataSourceByIndex"/>
+        <association property="style" column="{templateID = templateID, component_index = component_index}" select="pers.tornado.datav.mapper.DatavTemplateComponentStyleMapper.selectStyleByIndex"/>
+    </resultMap>
+
+    <resultMap id="DatavTemplateComponentWithoutIDMap" type="pers.tornado.datav.entity.DatavTemplateComponent">
+        <result column="component_name" property="name"/>
+        <result column="component_title" property="title"/>
+        <result column="component_subTitle" property="subTitle"/>
+        <result column="component_width" property="width"/>
+        <result column="component_height" property="height"/>
+        <result column="component_top" property="top"/>
+        <result column="component_left" property="left"/>
+        <result column="component_deg" property="deg"/>
+        <result column="component_draggable" property="draggable"/>
+        <result column="component_resizable" property="resizable"/>
+        <result column="component_parentLimitation" property="parentLimitation"/>
+        <result column="component_active" property="active"/>
+        <result column="component_index" property="index"/>
+        <result column="component_zindex" property="zindex"/>
+        <result column="disabled" property="disabled"/>
+    </resultMap>
+
+
+    <select id="selectComponentByID" resultMap="DatavTemplateComponentMap">
+        select * from datav_template_component
+        where templateID =#{templateID}
+    </select>
+
+
+    <insert id="insertOneTemplateComponent" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
+        insert into datav_template_component
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="templateID != null">
+                templateID,
+            </if>
+            <if test="index != null">
+                component_index,
+            </if>
+            <if test="name != null">
+                component_name,
+            </if>
+            <if test="title != null">
+                component_title,
+            </if>
+            <if test="subTitle != null">
+                component_subTitle,
+            </if>
+            <if test="width != null">
+                component_width,
+            </if>
+            <if test="height != null">
+                component_height,
+            </if>
+            <if test="top != null">
+                component_top,
+            </if>
+            <if test="left != null">
+                component_left,
+            </if>
+            <if test="deg != null">
+                component_deg,
+            </if>
+            <if test="draggable != null">
+                component_draggable,
+            </if>
+            <if test="resizable != null">
+                component_resizable,
+            </if>
+            <if test="parentLimitation != null">
+                component_parentLimitation,
+            </if>
+            <if test="active != null">
+                component_active,
+            </if>
+            <if test="zindex != null">
+                component_zindex,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="templateID != null">
+                #{templateID},
+            </if>
+            <if test="index != null">
+                #{index},
+            </if>
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="subTitle != null">
+                #{subTitle},
+            </if>
+            <if test="width != null">
+                #{width},
+            </if>
+            <if test="height != null">
+                #{height},
+            </if>
+            <if test="top != null">
+                #{top},
+            </if>
+            <if test="left != null">
+                #{left},
+            </if>
+            <if test="deg != null">
+                #{deg},
+            </if>
+            <if test="draggable != null">
+                #{draggable},
+            </if>
+            <if test="resizable != null">
+                #{resizable},
+            </if>
+            <if test="parentLimitation != null">
+                #{parentLimitation},
+            </if>
+            <if test="active != null">
+                #{active},
+            </if>
+            <if test="zindex != null">
+                #{zindex},
+            </if>
+        </trim>
+    </insert>
+
+
+</mapper>

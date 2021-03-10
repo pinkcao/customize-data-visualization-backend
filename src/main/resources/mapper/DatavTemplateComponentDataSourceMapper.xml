@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.tornado.datav.mapper.DatavTemplateComponentDataSourceMapper">
+    
+    <resultMap id="DatavTemplateComponentDatasourceMap" type="pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo">
+        <id column="templateID" property="templateID" />
+        <id column="component_index" property="index"/>
+        <result column="component_data" property="data"/>
+        <result column="component_dataSourceOptions" property="dataSourceOptions"/>
+        <result column="component_dataSourceType" property="dataSourceType"/>
+        <result column="component_APISwitch" property="APISwitch"/>
+        <result column="component_APIURL" property="APIURL"/>
+        <result column="component_APIMethod" property="APIMethod"/>
+        <result column="component_APIInterval" property="APIInterval"/>
+        <result column="component_IntervalID" property="IntervalID"/>
+    </resultMap>
+
+    <resultMap id="DatavTemplateComponentDatasourceWithoutIDMap" type="pers.tornado.datav.entity.DatavTemplateComponentDataSource">
+        <result column="component_data" property="data"/>
+        <result column="component_dataSourceOptions" property="dataSourceOptions"/>
+        <result column="component_dataSourceType" property="dataSourceType"/>
+        <result column="component_APISwitch" property="APISwitch"/>
+        <result column="component_APIURL" property="APIURL"/>
+        <result column="component_APIMethod" property="APIMethod"/>
+        <result column="component_APIInterval" property="APIInterval"/>
+        <result column="component_IntervalID" property="IntervalID"/>
+    </resultMap>
+
+    <select id="selectDataSourceByIndex" resultMap="DatavTemplateComponentDatasourceWithoutIDMap">
+        select * from datav_template_component_datasource
+        where templateID =#{templateID} and component_index =#{component_index}
+    </select>
+
+    <insert id="insertOneDataSource" parameterType="pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo">
+        insert into datav_template_component_datasource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="templateID != null">
+                templateID,
+            </if>
+            <if test="index != null">
+                component_index,
+            </if>
+            <if test="data != null">
+                component_data,
+            </if>
+            <if test="dataSourceOptions != null">
+                component_dataSourceOptions,
+            </if>
+            <if test="dataSourceType != null">
+                component_dataSourceType,
+            </if>
+            <if test="APISwitch != null">
+                component_APISwitch,
+            </if>
+            <if test="APIURL != null">
+                component_APIURL,
+            </if>
+            <if test="APIMethod != null">
+                component_APIMethod,
+            </if>
+            <if test="APIInterval != null">
+                component_APIInterval,
+            </if>
+            <if test="APIHeader != null">
+                component_APIHeader,
+            </if>
+            <if test="IntervalID != null">
+                component_IntervalID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="templateID != null">
+                #{templateID},
+            </if>
+            <if test="index != null">
+                #{index},
+            </if>
+            <if test="data != null">
+                #{data},
+            </if>
+            <if test="dataSourceOptions != null">
+                #{dataSourceOptions},
+            </if>
+            <if test="dataSourceType != null">
+                #{dataSourceType},
+            </if>
+            <if test="APISwitch != null">
+                #{APISwitch},
+            </if>
+            <if test="APIURL != null">
+                #{APIURL},
+            </if>
+            <if test="APIMethod != null">
+                #{APIMethod},
+            </if>
+            <if test="APIInterval != null">
+                #{APIInterval},
+            </if>
+            <if test="APIHeader != null">
+                #{APIHeader},
+            </if>
+            <if test="IntervalID != null">
+                #{IntervalID},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>
