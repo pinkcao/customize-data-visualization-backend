@@ -8,5 +8,8 @@ public interface DatavTemplateComponentService {
 
     int insertOneTemplateComponent(DatavTemplateComponent datavTemplateComponent);
     List<DatavTemplateComponent> selectComponentByID(int templateID);
+    int adjustComponent(DatavTemplateComponent datavTemplateComponent);
+    int updateOneComponent(DatavTemplateComponent datavTemplateComponent);
+    int spliceOneComponent(DatavTemplateComponent datavTemplateComponent);
 
 }

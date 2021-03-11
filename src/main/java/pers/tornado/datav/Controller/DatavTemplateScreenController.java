@@ -67,7 +67,6 @@ public class DatavTemplateScreenController {
         result.put("screenStretch", datavTemplateScreenStretchVo.getScreenStretch());
         result.put("templateID", datavTemplateScreenStretchVo.getTemplateID());
         int screenStretchParam = 0;
-        System.out.println(DatavTemplateController.refs);
         for (int i = 0; i < DatavTemplateController.refs.size(); i++) {
             if (DatavTemplateController.refs.get(i).getScreenStretchMethod().equals(datavTemplateScreenStretchVo.getScreenStretch())) {
                 screenStretchParam = DatavTemplateController.refs.get(i).getScreenStretch();

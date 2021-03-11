@@ -48,6 +48,61 @@
         where templateID =#{templateID}
     </select>
 
+    <select id="selectDistinctComponent" resultMap="DatavTemplateComponentMap">
+        select * from datav_template_component
+        where templateID =#{templateID} and component_index =#{component_index}
+    </select>
+
+    <update id="updateOneComponent" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
+        update datav_template_component
+        <set>
+            <if test="title != null">
+                component_title =#{title},
+            </if>
+            <if test="subTitle != null">
+                component_subTitle =#{subTitle},
+            </if>
+            <if test="zindex != null">
+                component_zindex =#{zindex}
+            </if>
+        </set>
+        where templateID =#{templateID} and component_index =#{index}
+    </update>
+
+    <update id="spliceOneComponent" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
+        update datav_template_component set disabled = 1
+        where templateID =#{templateID} and component_index =#{index}
+    </update>
+
+    <update id="adjustComponent" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
+        update datav_template_component
+        <set>
+
+            <if test="width != null">
+                component_width =#{width},
+            </if>
+            <if test="height != null">
+                component_height =#{height},
+            </if>
+            <if test="top != null">
+                component_top =#{top},
+            </if>
+            <if test="left != null">
+                component_left =#{left},
+            </if>
+            <if test="deg != null">
+                component_deg =#{deg},
+            </if>
+
+        </set>
+        where templateID =#{templateID} and component_index =#{index}
+    </update>
+
+    <update id="updateComponentBasicStatus" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
+
+    </update>
+
+
 
     <insert id="insertOneTemplateComponent" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
         insert into datav_template_component

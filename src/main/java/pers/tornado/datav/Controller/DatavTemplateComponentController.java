@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pers.tornado.datav.entity.DatavTemplateComponent;
 import pers.tornado.datav.entity.DatavTemplateComponentDataSource;
 import pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo;
+import pers.tornado.datav.entity.DatavTemplateComponentStyleVo;
 import pers.tornado.datav.service.DatavTemplateComponentService;
 import pers.tornado.datav.service.DatavTemplateComponentStyleService;
 import pers.tornado.datav.service.DatavTemplateComponentDataSourceService;
@@ -31,10 +32,10 @@ public class DatavTemplateComponentController {
 
 
     /*
-    * 用于数据初始化的接口
-    *
-    *
-    * */
+     * 用于数据初始化的接口
+     *
+     *
+     * */
     @RequestMapping("/componentTrans")
     public Object componentTrans(@RequestBody Map<String, List<DatavTemplateComponent>> componentList) {
 //        System.out.println(componentList.toString());
@@ -71,8 +72,51 @@ public class DatavTemplateComponentController {
         datavTemplateComponentDataSourceVo.setTemplateID(datavTemplateComponent.getTemplateID());
         datavTemplateComponentDataSourceVo.setIndex(datavTemplateComponent.getIndex());
         datavTemplateComponentDataSourceService.insertOneDataSource(datavTemplateComponentDataSourceVo);
-        result.put("message","添加成功");
+        result.put("message", "添加成功");
         result.put("resultSet", datavTemplateComponentService.selectComponentByID(datavTemplateComponent.getTemplateID()));
+        return result;
+    }
+
+    @RequestMapping("/adjustComponent")
+    public Object adjustComponent(@RequestBody DatavTemplateComponent datavTemplateComponent) {
+        Map<String, Object> result = new HashMap<>();
+        if (datavTemplateComponentService.adjustComponent(datavTemplateComponent) > 0) {
+            result.put("resultSet", datavTemplateComponentService.selectComponentByID(datavTemplateComponent.getTemplateID()));
+            result.put("message", "更新成功");
+            return result;
+        } else {
+            result.put("message", "更新失败，没找到对应component");
+            return result;
+        }
+    }
+
+    @RequestMapping("/spliceComponent")
+    public Object spliceComponent(@RequestBody DatavTemplateComponent datavTemplateComponent) {
+        Map<String, Object> result = new HashMap<>();
+        datavTemplateComponentService.spliceOneComponent(datavTemplateComponent);
+        result.put("resultSet", datavTemplateComponentService.selectComponentByID(datavTemplateComponent.getTemplateID()));
+        result.put("message", "删除成功");
+        return result;
+    }
+
+    @RequestMapping("/updateComponentZindex")
+    public Object updateComponentZindex(@RequestBody Map<String, List<DatavTemplateComponent>> componentList) {
+        List<DatavTemplateComponent> tempComponentList = componentList.get("componentList");
+        for (int i = 0; i < tempComponentList.size(); i++) {
+            datavTemplateComponentService.updateOneComponent(tempComponentList.get(i));
+        }
+        Map<String, Object> result = new HashMap<>();
+        System.out.println(tempComponentList.toString());
+        return result;
+    }
+
+    @RequestMapping("/updateComponentBasicStatus")
+    public Object updateComponentBasicStatus(@RequestBody DatavTemplateComponent datavTemplateComponent) {
+        Map<String, Object> result = new HashMap<>();
+        datavTemplateComponentService.updateOneComponent(datavTemplateComponent);
+        datavTemplateComponentStyleService.updateOneStyle(new DatavTemplateComponentStyleVo(datavTemplateComponent));
+        datavTemplateComponentDataSourceService.updateOneDataSource(new DatavTemplateComponentDataSourceVo(datavTemplateComponent));
+        System.out.println(datavTemplateComponent.toString());
         return result;
     }
 

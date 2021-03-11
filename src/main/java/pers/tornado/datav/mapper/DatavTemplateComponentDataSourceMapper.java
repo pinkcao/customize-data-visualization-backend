@@ -11,5 +11,6 @@ public interface DatavTemplateComponentDataSourceMapper {
 
     int insertOneDataSource (DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo);
     DatavTemplateComponentDataSource selectDataSourceByIndex(int templateID, int component_index);
+    int updateOneDataSource (DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo);
 
 }

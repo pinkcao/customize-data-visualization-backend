@@ -32,6 +32,40 @@
         where templateID =#{templateID} and component_index =#{component_index}
     </select>
 
+    <update id="updateOneDataSource" parameterType="pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo">
+        update datav_template_component_datasource
+        <set>
+            <if test="data != null">
+                component_data =#{data},
+            </if>
+            <if test="dataSourceOptions != null">
+                component_dataSourceOptions =#{dataSourceOptions},
+            </if>
+            <if test="dataSourceType != null">
+                component_dataSourceType =#{dataSourceType},
+            </if>
+            <if test="APISwitch != null">
+                component_APISwitch =#{APISwitch},
+            </if>
+            <if test="APIURL != null">
+                component_APIURL =#{APIURL},
+            </if>
+            <if test="APIMethod != null">
+                component_APIMethod =#{APIMethod},
+            </if>
+            <if test="APIInterval != null">
+                component_APIInterval =#{APIInterval},
+            </if>
+            <if test="APIHeader != null">
+                component_APIHeader =#{APIHeader},
+            </if>
+            <if test="IntervalID != null">
+                component_IntervalID =#{IntervalID}
+            </if>
+        </set>
+        where templateID =#{templateID} and component_index =#{index}
+    </update>
+
     <insert id="insertOneDataSource" parameterType="pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo">
         insert into datav_template_component_datasource
         <trim prefix="(" suffix=")" suffixOverrides=",">

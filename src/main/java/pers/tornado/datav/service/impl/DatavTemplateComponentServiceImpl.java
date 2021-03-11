@@ -24,4 +24,19 @@ public class DatavTemplateComponentServiceImpl implements DatavTemplateComponent
     public List<DatavTemplateComponent> selectComponentByID(int templateID) {
         return datavTemplateComponentMapper.selectComponentByID(templateID);
     }
+
+    @Override
+    public int adjustComponent(DatavTemplateComponent datavTemplateComponent) {
+        return datavTemplateComponentMapper.adjustComponent(datavTemplateComponent);
+    }
+
+    @Override
+    public int updateOneComponent(DatavTemplateComponent datavTemplateComponent) {
+        return datavTemplateComponentMapper.updateOneComponent(datavTemplateComponent);
+    }
+
+    @Override
+    public int spliceOneComponent(DatavTemplateComponent datavTemplateComponent) {
+        return datavTemplateComponentMapper.spliceOneComponent(datavTemplateComponent);
+    }
 }

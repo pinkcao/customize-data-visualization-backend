@@ -31,4 +31,23 @@
         (#{templateID}, #{index})
     </insert>
     
+    <update id="updateOneStyle" parameterType="pers.tornado.datav.entity.DatavTemplateComponentStyleVo">
+        update datav_template_component_style
+        <set>
+            <if test="opacity != null">
+                component_opacity =#{opacity},
+            </if>
+            <if test="legendvis != null">
+                component_legendvis =#{legendvis},
+            </if>
+            <if test="titlevis != null">
+                component_titlevis =#{titlevis},
+            </if>
+            <if test="titlepos != null">
+                component_titlepos =#{titlepos},
+            </if>
+        </set>
+        where templateID =#{templateID} and component_index =#{index}
+    </update>
+    
 </mapper>

@@ -19,4 +19,9 @@ public class DatavTemplateComponentDataSourceServiceImpl implements DatavTemplat
     public int insertOneDataSource(DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo) {
         return datavTemplateComponentDataSourceMapper.insertOneDataSource(datavTemplateComponentDataSourceVo);
     }
+
+    @Override
+    public int updateOneDataSource(DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo) {
+        return datavTemplateComponentDataSourceMapper.updateOneDataSource(datavTemplateComponentDataSourceVo);
+    }
 }
