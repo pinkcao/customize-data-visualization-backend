@@ -1,9 +1,7 @@
 package pers.tornado.datav.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pers.tornado.datav.entity.DatavTemplateComponentDataSource;
 import pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo;
 import pers.tornado.datav.mapper.DatavTemplateComponentDataSourceMapper;
 import pers.tornado.datav.service.DatavTemplateComponentDataSourceService;
@@ -12,8 +10,11 @@ import pers.tornado.datav.service.DatavTemplateComponentDataSourceService;
 @Transactional
 public class DatavTemplateComponentDataSourceServiceImpl implements DatavTemplateComponentDataSourceService {
 
-    @Autowired
-    private DatavTemplateComponentDataSourceMapper datavTemplateComponentDataSourceMapper;
+    private final DatavTemplateComponentDataSourceMapper datavTemplateComponentDataSourceMapper;
+
+    public DatavTemplateComponentDataSourceServiceImpl(DatavTemplateComponentDataSourceMapper datavTemplateComponentDataSourceMapper) {
+        this.datavTemplateComponentDataSourceMapper = datavTemplateComponentDataSourceMapper;
+    }
 
     @Override
     public int insertOneDataSource(DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo) {

@@ -1,6 +1,5 @@
 package pers.tornado.datav.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.tornado.datav.entity.TestJson;
@@ -9,12 +8,16 @@ import pers.tornado.datav.service.TestService;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+
 @Transactional
 @Service
 public class TestServiceImpl implements TestService {
 
-    @Autowired
-    private TestMapper testMapper;
+    private final TestMapper testMapper;
+
+    public TestServiceImpl(TestMapper testMapper) {
+        this.testMapper = testMapper;
+    }
 
     public List<LinkedHashMap<String, Object>> superManagerSelect(String sql) {
         return testMapper.superManagerSelect(sql);

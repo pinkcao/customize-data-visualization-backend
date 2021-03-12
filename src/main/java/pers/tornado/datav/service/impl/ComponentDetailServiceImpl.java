@@ -1,6 +1,5 @@
 package pers.tornado.datav.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.tornado.datav.entity.ComponentDetail;
@@ -13,8 +12,11 @@ import java.util.List;
 @Service
 public class ComponentDetailServiceImpl implements ComponentDetailService {
 
-    @Autowired
-    private ComponentDetailMapper componentDetailMapper;
+    private final ComponentDetailMapper componentDetailMapper;
+
+    public ComponentDetailServiceImpl(ComponentDetailMapper componentDetailMapper) {
+        this.componentDetailMapper = componentDetailMapper;
+    }
 
     public List<ComponentDetail> getAllComponentDetail() {
         return componentDetailMapper.getAllComponentDetail();

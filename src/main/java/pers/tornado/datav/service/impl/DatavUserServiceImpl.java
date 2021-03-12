@@ -1,6 +1,5 @@
 package pers.tornado.datav.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.tornado.datav.entity.DatavUser;
@@ -8,12 +7,16 @@ import pers.tornado.datav.mapper.DatavUserMapper;
 import pers.tornado.datav.service.DatavUserService;
 
 import java.util.List;
+
 @Transactional
 @Service
 public class DatavUserServiceImpl implements DatavUserService {
 
-    @Autowired
-    private DatavUserMapper datavUserMapper;
+    private final DatavUserMapper datavUserMapper;
+
+    public DatavUserServiceImpl(DatavUserMapper datavUserMapper) {
+        this.datavUserMapper = datavUserMapper;
+    }
 
     @Override
     public List<DatavUser> getAllDatavUser() {

@@ -1,6 +1,5 @@
 package pers.tornado.datav.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pers.tornado.datav.entity.DatavTemplateComponent;
@@ -13,8 +12,11 @@ import java.util.List;
 @Transactional
 public class DatavTemplateComponentServiceImpl implements DatavTemplateComponentService {
 
-    @Autowired
-    public DatavTemplateComponentMapper datavTemplateComponentMapper;
+    public final DatavTemplateComponentMapper datavTemplateComponentMapper;
+
+    public DatavTemplateComponentServiceImpl(DatavTemplateComponentMapper datavTemplateComponentMapper) {
+        this.datavTemplateComponentMapper = datavTemplateComponentMapper;
+    }
 
     public int insertOneTemplateComponent(DatavTemplateComponent datavTemplateComponent) {
         return datavTemplateComponentMapper.insertOneTemplateComponent(datavTemplateComponent);

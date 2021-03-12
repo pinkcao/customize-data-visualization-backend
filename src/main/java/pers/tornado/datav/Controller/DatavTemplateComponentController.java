@@ -1,6 +1,5 @@
 package pers.tornado.datav.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,9 +8,9 @@ import pers.tornado.datav.entity.DatavTemplateComponent;
 import pers.tornado.datav.entity.DatavTemplateComponentDataSource;
 import pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo;
 import pers.tornado.datav.entity.DatavTemplateComponentStyleVo;
+import pers.tornado.datav.service.DatavTemplateComponentDataSourceService;
 import pers.tornado.datav.service.DatavTemplateComponentService;
 import pers.tornado.datav.service.DatavTemplateComponentStyleService;
-import pers.tornado.datav.service.DatavTemplateComponentDataSourceService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,14 +20,17 @@ import java.util.Map;
 @RequestMapping("/api/component")
 public class DatavTemplateComponentController {
 
-    @Autowired
-    private DatavTemplateComponentStyleService datavTemplateComponentStyleService;
+    private final DatavTemplateComponentStyleService datavTemplateComponentStyleService;
 
-    @Autowired
-    private DatavTemplateComponentDataSourceService datavTemplateComponentDataSourceService;
+    private final DatavTemplateComponentDataSourceService datavTemplateComponentDataSourceService;
 
-    @Autowired
-    private DatavTemplateComponentService datavTemplateComponentService;
+    private final DatavTemplateComponentService datavTemplateComponentService;
+
+    public DatavTemplateComponentController(DatavTemplateComponentStyleService datavTemplateComponentStyleService, DatavTemplateComponentDataSourceService datavTemplateComponentDataSourceService, DatavTemplateComponentService datavTemplateComponentService) {
+        this.datavTemplateComponentStyleService = datavTemplateComponentStyleService;
+        this.datavTemplateComponentDataSourceService = datavTemplateComponentDataSourceService;
+        this.datavTemplateComponentService = datavTemplateComponentService;
+    }
 
 
     /*
@@ -38,8 +40,6 @@ public class DatavTemplateComponentController {
      * */
     @RequestMapping("/componentTrans")
     public Object componentTrans(@RequestBody Map<String, List<DatavTemplateComponent>> componentList) {
-//        System.out.println(componentList.toString());
-//        System.out.println(componentList.get("componentList").get(1).toString());
         List<DatavTemplateComponent> tempComponentList = componentList.get("componentList");
         for (DatavTemplateComponent datavTemplateComponent : tempComponentList) {
             datavTemplateComponentStyleService.insertOneStyle(datavTemplateComponent.getTemplateID(), datavTemplateComponent.getIndex());
@@ -88,11 +88,10 @@ public class DatavTemplateComponentController {
         if (datavTemplateComponentService.adjustComponent(datavTemplateComponent) > 0) {
             result.put("resultSet", datavTemplateComponentService.selectComponentByID(datavTemplateComponent.getTemplateID()));
             result.put("message", "更新成功");
-            return result;
         } else {
             result.put("message", "更新失败，没找到对应component");
-            return result;
         }
+        return result;
     }
 
     @RequestMapping("/spliceComponent")

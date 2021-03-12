@@ -1,7 +1,9 @@
 package pers.tornado.datav.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import pers.tornado.datav.entity.DatavTemplate;
 import pers.tornado.datav.entity.DatavTemplateScreenStretchRef;
 import pers.tornado.datav.entity.DatavTemplateVo;
@@ -16,14 +18,15 @@ import java.util.Map;
 @RequestMapping("/api/template")
 public class DatavTemplateController {
 
-    @Autowired
-    private DatavTemplateService datavTemplateService;
+    private final DatavTemplateService datavTemplateService;
 
     public static List<DatavTemplateScreenStretchRef> refs;
 
-//    {
-//        refs = datavTemplateService.getRef();
-//    }
+    public DatavTemplateController(DatavTemplateService datavTemplateService) {
+        this.datavTemplateService = datavTemplateService;
+        refs = datavTemplateService.getRef();
+    }
+
 
     @RequestMapping("/getAllTemplate")
     public Object getAllDatavTemplate() {
@@ -39,27 +42,27 @@ public class DatavTemplateController {
         List<DatavTemplateVo> resultTemplateList = new ArrayList<>();
         List<DatavTemplate> tempResult = datavTemplateService.getDatavUserTemplate(userID);
         // PO to VO
-        for (int i = 0; i < tempResult.size(); i++) {
+        for (DatavTemplate datavTemplate : tempResult) {
             DatavTemplateVo tempTemplateVo = new DatavTemplateVo();
-            tempTemplateVo.setTemplateID(tempResult.get(i).getTemplateID());
-            tempTemplateVo.setTemplatePicUrl(tempResult.get(i).getTemplatePicUrl());
-            tempTemplateVo.setUserID(tempResult.get(i).getUserID());
-            tempTemplateVo.setDisabled(tempResult.get(i).getDisabled());
-            Map<String, Object> screenStretch = new HashMap<String, Object>();
-            int tempScreenStretchFlag = tempResult.get(i).getScreenStretch();
-            for (int j = 0; j < refs.size(); j++) {
-                if (refs.get(j).getScreenStretch() == tempScreenStretchFlag) {
-                    screenStretch.put(refs.get(j).getScreenStretchMethod(), true);
+            tempTemplateVo.setTemplateID(datavTemplate.getTemplateID());
+            tempTemplateVo.setTemplatePicUrl(datavTemplate.getTemplatePicUrl());
+            tempTemplateVo.setUserID(datavTemplate.getUserID());
+            tempTemplateVo.setDisabled(datavTemplate.getDisabled());
+            Map<String, Object> screenStretch = new HashMap<>();
+            int tempScreenStretchFlag = datavTemplate.getScreenStretch();
+            for (DatavTemplateScreenStretchRef ref : refs) {
+                if (ref.getScreenStretch() == tempScreenStretchFlag) {
+                    screenStretch.put(ref.getScreenStretchMethod(), true);
                 } else {
-                    screenStretch.put(refs.get(j).getScreenStretchMethod(), false);
+                    screenStretch.put(ref.getScreenStretchMethod(), false);
                 }
             }
             tempTemplateVo.setScreenStretch(screenStretch);
-            Map<String, Object> backgroundStyle = new HashMap<String, Object>();
-            backgroundStyle.put("backgroundColor", tempResult.get(i).getBackgroundColor());
-            backgroundStyle.put("backgroundImage", tempResult.get(i).getBackgroundImage());
+            Map<String, Object> backgroundStyle = new HashMap<>();
+            backgroundStyle.put("backgroundColor", datavTemplate.getBackgroundColor());
+            backgroundStyle.put("backgroundImage", datavTemplate.getBackgroundImage());
             tempTemplateVo.setBackgroundStyle(backgroundStyle);
-            tempTemplateVo.setScreendef(tempResult.get(i).getScreendef());
+            tempTemplateVo.setScreendef(datavTemplate.getScreendef());
 
             resultTemplateList.add(tempTemplateVo);
         }

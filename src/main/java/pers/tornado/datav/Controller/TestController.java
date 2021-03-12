@@ -1,6 +1,5 @@
 package pers.tornado.datav.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +16,11 @@ import java.util.Map;
 @RestController
 public class TestController {
 
-    @Autowired
-    private TestService testService;
+    private final TestService testService;
+
+    public TestController(TestService testService) {
+        this.testService = testService;
+    }
 
     @RequestMapping("/testsql")
     public Object getComponentTabDataDetailList(@RequestParam("sql")String sql){
@@ -44,10 +46,10 @@ public class TestController {
         tempItem.setHeight(200);
         tempItem.setWidth(200);
         tempItem.setZindex(300);
-        Map<String, Object> tempMap1 = new HashMap<String, Object>();
+        Map<String, Object> tempMap1 = new HashMap<>();
         tempMap1.put("deg", 100);
         tempMap1.put("legendvis", true);
-        Map<String, Object> tempMap2 = new HashMap<String, Object>();
+        Map<String, Object> tempMap2 = new HashMap<>();
         int[][] intList = new int[3][4];
         tempMap2.put("data", intList);
         tempMap2.put("url", "hello, doomish");
@@ -60,8 +62,6 @@ public class TestController {
     @RequestMapping("/testGetListMapJson")
     public Object testGetListMapJson(@RequestBody List<TestList> testList){
         System.out.println(testList.toString());
-//        System.out.println(testList);
-//        System.out.println(testJson.getTextColumn());
         return 0;
     }
 }

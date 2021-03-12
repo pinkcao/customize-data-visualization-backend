@@ -1,6 +1,5 @@
 package pers.tornado.datav.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pers.tornado.datav.service.ComponentTabDataService;
@@ -9,8 +8,11 @@ import pers.tornado.datav.service.ComponentTabDataService;
 @RequestMapping("/api/componentCol")
 public class ComponentTabDataController {
 
-    @Autowired
-    private ComponentTabDataService componentTabDataService;
+    private final ComponentTabDataService componentTabDataService;
+
+    public ComponentTabDataController(ComponentTabDataService componentTabDataService) {
+        this.componentTabDataService = componentTabDataService;
+    }
 
     @RequestMapping("/getComponentTabData")
     public Object getComponentTabData(){

@@ -1,6 +1,5 @@
 package pers.tornado.datav.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,26 +16,21 @@ import java.util.Map;
 @RequestMapping("/api/screen")
 public class DatavTemplateScreenController {
 
-    @Autowired
-    private DatavTemplateScreenService datavTemplateScreenService;
+    private final DatavTemplateScreenService datavTemplateScreenService;
 
-    @Autowired
-    private DatavTemplateService datavTemplateService;
+    private final DatavTemplateService datavTemplateService;
+
+    public DatavTemplateScreenController(DatavTemplateScreenService datavTemplateScreenService, DatavTemplateService datavTemplateService) {
+        this.datavTemplateScreenService = datavTemplateScreenService;
+        this.datavTemplateService = datavTemplateService;
+    }
 
     @RequestMapping("/getScreenDef")
     public List<DatavTemplateScreendef> getScreenDef(@RequestParam(value = "templateID") int templateID) {
-        List<DatavTemplateScreendef> defs = datavTemplateScreenService.getTemplateScreendef(templateID);
+//        List<DatavTemplateScreendef> defs = datavTemplateScreenService.getTemplateScreendef(templateID);
         return datavTemplateScreenService.getTemplateScreendef(templateID);
     }
 
-//    @RequestMapping("/updateScreenDef")
-//    public Object updateScreenDef(@RequestBody List<DatavTemplateScreendef> screenDef){
-//        System.out.println(screenDef);
-//        for (int i = 0; i < screenDef.size(); i++) {
-//            System.out.println(datavTemplateScreendefService.updateScreendefWithID(screenDef.get(i)));
-//        }
-//        return 0;
-//    }
     @RequestMapping("/updateScreenDef")
     public Object updateScreenDef(@RequestBody ScreendefVo screenDef){
 //        System.out.println(screenDef.size());
@@ -49,7 +43,7 @@ public class DatavTemplateScreenController {
 
     @RequestMapping("/getScreenStretch")
     public Object getScreenStretch(@RequestParam(value = "templateID") int templateID) {
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         int screenStretch = datavTemplateScreenService.getScreenStretchWithID(templateID);
         for (int i = 0; i < DatavTemplateController.refs.size(); i++) {
             if (DatavTemplateController.refs.get(i).getScreenStretch() == screenStretch) {
@@ -63,9 +57,6 @@ public class DatavTemplateScreenController {
 
     @RequestMapping("/updateScreenStretch")
     public Object updateScreenStretch(@RequestBody DatavTemplateScreenStretchVo datavTemplateScreenStretchVo) {
-        Map<String, Object> result = new HashMap<>();
-        result.put("screenStretch", datavTemplateScreenStretchVo.getScreenStretch());
-        result.put("templateID", datavTemplateScreenStretchVo.getTemplateID());
         int screenStretchParam = 0;
         for (int i = 0; i < DatavTemplateController.refs.size(); i++) {
             if (DatavTemplateController.refs.get(i).getScreenStretchMethod().equals(datavTemplateScreenStretchVo.getScreenStretch())) {

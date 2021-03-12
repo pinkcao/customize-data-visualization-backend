@@ -1,6 +1,5 @@
 package pers.tornado.datav.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +13,11 @@ import java.util.Map;
 @RequestMapping("/api/user")
 public class DatavUserController {
 
-    @Autowired
-    private DatavUserService datavUserService;
+    private final DatavUserService datavUserService;
+
+    public DatavUserController(DatavUserService datavUserService) {
+        this.datavUserService = datavUserService;
+    }
 
     @RequestMapping("/getAllUser")
     public Object getAllUser() {
@@ -24,20 +26,16 @@ public class DatavUserController {
 
     @RequestMapping("/login")
     public Object userLogin(@RequestBody DatavUser datavUser) {
-//        System.out.println(datavUser.toString());
-//        System.out.println(datavUserService.getOneDatavUser(datavUser).getuserID());
-
 
         DatavUser tempUser = datavUserService.getOneDatavUser(datavUser);
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
         if (tempUser != null) {
             result.put("loginStatus", true);
             result.put("userID", tempUser.getuserID());
-            return result;
         } else {
             result.put("loginStatus", false);
-            return result;
         }
+        return result;
     }
 
     @RequestMapping("/validateAccount")
@@ -51,15 +49,14 @@ public class DatavUserController {
 
         //插入datav_user表，返回了操作的数据条数，并赋值给datavUser主键
         int tempUser = datavUserService.insertOneUser(datavUser);
-        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> result = new HashMap<>();
 
         if (tempUser > 0) {
             result.put("registerStatus", true);
-            return result;
         } else {
             result.put("registerStatus", false);
-            return result;
         }
+        return result;
 
     }
 }
