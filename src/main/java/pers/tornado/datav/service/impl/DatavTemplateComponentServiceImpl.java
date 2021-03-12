@@ -39,4 +39,19 @@ public class DatavTemplateComponentServiceImpl implements DatavTemplateComponent
     public int spliceOneComponent(DatavTemplateComponent datavTemplateComponent) {
         return datavTemplateComponentMapper.spliceOneComponent(datavTemplateComponent);
     }
+
+    @Override
+    public int getTemplateBiggestIndex(int templateID) {
+        return datavTemplateComponentMapper.getTemplateBiggestIndex(templateID);
+    }
+
+    @Override
+    public int getTemplateBiggestZindex(int templateID) {
+        return datavTemplateComponentMapper.getTemplateBiggestZindex(templateID);
+    }
+
+    @Override
+    public int updateComponentZindex(DatavTemplateComponent datavTemplateComponent) {
+        return datavTemplateComponentMapper.updateComponentZindex(datavTemplateComponent);
+    }
 }

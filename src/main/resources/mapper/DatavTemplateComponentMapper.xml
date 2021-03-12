@@ -62,9 +62,6 @@
             <if test="subTitle != null">
                 component_subTitle =#{subTitle},
             </if>
-            <if test="zindex != null">
-                component_zindex =#{zindex}
-            </if>
         </set>
         where templateID =#{templateID} and component_index =#{index}
     </update>
@@ -98,8 +95,14 @@
         where templateID =#{templateID} and component_index =#{index}
     </update>
 
-    <update id="updateComponentBasicStatus" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
-
+    <update id="updateComponentZindex" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
+        update datav_template_component
+            <set>
+                <if test="zindex != null">
+                    component_zindex =#{zindex}
+                </if>
+            </set>
+        where templateID =#{templateID} and component_index =#{index}
     </update>
 
 
@@ -202,5 +205,20 @@
         </trim>
     </insert>
 
+    <select id="getTemplateBiggestIndex" resultType="java.lang.Integer">
+        SELECT IFNULL(Max(component_index), -1) from
+            (
+                select * from datav_template_component
+                where templateID = #{templateID}
+            ) as a
+    </select>
+
+    <select id="getTemplateBiggestZindex" resultType="java.lang.Integer">
+        SELECT IFNULL(Max(component_zindex), -1) from
+            (
+                select * from datav_template_component
+                where templateID = #{templateID}
+            ) as b;
+    </select>
 
 </mapper>

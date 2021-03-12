@@ -11,5 +11,8 @@ public interface DatavTemplateComponentService {
     int adjustComponent(DatavTemplateComponent datavTemplateComponent);
     int updateOneComponent(DatavTemplateComponent datavTemplateComponent);
     int spliceOneComponent(DatavTemplateComponent datavTemplateComponent);
+    int getTemplateBiggestIndex(int templateID);
+    int getTemplateBiggestZindex(int templateID);
+    int updateComponentZindex(DatavTemplateComponent datavTemplateComponent);
 
 }

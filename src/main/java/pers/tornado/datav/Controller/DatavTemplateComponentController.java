@@ -66,6 +66,11 @@ public class DatavTemplateComponentController {
     @RequestMapping("/appendComponent")
     public Object appendComponent(@RequestBody DatavTemplateComponent datavTemplateComponent) {
         Map<String, Object> result = new HashMap<>();
+        int componentIndex = datavTemplateComponentService.getTemplateBiggestIndex(datavTemplateComponent.getTemplateID());
+        int componentZindex = datavTemplateComponentService.getTemplateBiggestZindex(datavTemplateComponent.getTemplateID());
+        int componentIndexAndZindex = componentIndex > componentZindex ? componentIndex +1 : componentZindex +1;
+        datavTemplateComponent.setIndex(componentIndexAndZindex);
+        datavTemplateComponent.setZindex(componentIndexAndZindex);
         datavTemplateComponentService.insertOneTemplateComponent(datavTemplateComponent);
         datavTemplateComponentStyleService.insertOneStyle(datavTemplateComponent.getTemplateID(), datavTemplateComponent.getIndex());
         DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo = new DatavTemplateComponentDataSourceVo(datavTemplateComponent.getDataSource());
@@ -102,11 +107,12 @@ public class DatavTemplateComponentController {
     @RequestMapping("/updateComponentZindex")
     public Object updateComponentZindex(@RequestBody Map<String, List<DatavTemplateComponent>> componentList) {
         List<DatavTemplateComponent> tempComponentList = componentList.get("componentList");
-        for (int i = 0; i < tempComponentList.size(); i++) {
-            datavTemplateComponentService.updateOneComponent(tempComponentList.get(i));
+        for (DatavTemplateComponent datavTemplateComponent : tempComponentList) {
+            datavTemplateComponentService.updateComponentZindex(datavTemplateComponent);
         }
         Map<String, Object> result = new HashMap<>();
         System.out.println(tempComponentList.toString());
+        result.put("resultSet",datavTemplateComponentService.selectComponentByID(tempComponentList.get(0).getTemplateID()));
         return result;
     }
 
@@ -118,6 +124,11 @@ public class DatavTemplateComponentController {
         datavTemplateComponentDataSourceService.updateOneDataSource(new DatavTemplateComponentDataSourceVo(datavTemplateComponent));
         System.out.println(datavTemplateComponent.toString());
         return result;
+    }
+
+    @RequestMapping("/testAPI")
+    public Object testAPI(){
+        return datavTemplateComponentService.getTemplateBiggestIndex(1);
     }
 
 }
