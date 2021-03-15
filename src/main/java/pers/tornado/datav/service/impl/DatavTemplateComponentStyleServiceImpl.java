@@ -18,8 +18,8 @@ public class DatavTemplateComponentStyleServiceImpl implements DatavTemplateComp
 
 
     @Override
-    public int insertOneStyle(int templateID, int index) {
-        return datavTemplateComponentStyleMapper.insertOneStyle(templateID, index);
+    public int insertOneStyle(DatavTemplateComponentStyleVo datavTemplateComponentStyleVo) {
+        return datavTemplateComponentStyleMapper.insertOneStyle(datavTemplateComponentStyleVo);
     }
 
     @Override

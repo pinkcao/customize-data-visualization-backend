@@ -4,7 +4,7 @@ import pers.tornado.datav.entity.DatavTemplateComponentStyleVo;
 
 public interface DatavTemplateComponentStyleService {
 
-    int insertOneStyle(int templateID, int index);
+    int insertOneStyle(DatavTemplateComponentStyleVo datavTemplateComponentStyleVo);
     int updateOneStyle(DatavTemplateComponentStyleVo datavTemplateComponentStyleVo);
 
 }

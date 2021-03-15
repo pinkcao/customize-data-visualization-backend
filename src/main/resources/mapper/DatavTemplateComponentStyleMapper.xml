@@ -10,6 +10,7 @@
         <result column="component_legendvis" property="legendvis"/>
         <result column="component_titlevis" property="titlevis"/>
         <result column="component_titlepos" property="titlepos"/>
+        <result column="component_fontColor" property="fontColor"/>
 
     </resultMap>
 
@@ -18,6 +19,7 @@
         <result column="component_legendvis" property="legendvis"/>
         <result column="component_titlevis" property="titlevis"/>
         <result column="component_titlepos" property="titlepos"/>
+        <result column="component_fontColor" property="fontColor"/>
     </resultMap>
 
     <select id="selectStyleByIndex" resultMap="DatavTemplateComponentStyleWithoutIDMap">
@@ -26,9 +28,60 @@
     </select>
 
 
-    <insert id="insertOneStyle" parameterType="pers.tornado.datav.entity.DatavTemplateComponentDataSource">
-        insert into datav_template_component_style (templateID, component_index) values
-        (#{templateID}, #{index})
+    <insert id="insertOneStyle" parameterType="pers.tornado.datav.entity.DatavTemplateComponentStyleVo">
+        insert into datav_template_component_style
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="templateID != null">
+                templateID,
+            </if>
+            <if test="index != null">
+                component_index,
+            </if>
+            <if test="opacity != null">
+                component_opacity,
+            </if>
+            <if test="legendvis != null">
+                component_legendvis,
+            </if>
+            <if test="titlevis != null">
+                component_titlevis,
+            </if>
+            <if test="titlepos != null">
+                component_titlepos,
+            </if>
+            <if test="fontColor != null">
+                component_fontColor,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="templateID != null">
+                #{templateID},
+            </if>
+            <if test="index != null">
+                #{index},
+            </if>
+            <if test="opacity != null">
+                #{opacity},
+            </if>
+            <if test="legendvis != null and legendvis != false">
+                #{legendvis},
+            </if>
+            <if test="titlevis != null and titlevis != false">
+                #{titlevis},
+            </if>
+            <if test="legendvis != null and legendvis == false">
+                null,
+            </if>
+            <if test="titlevis != null and titlevis == false">
+                null,
+            </if>
+            <if test="titlepos != null">
+                #{titlepos},
+            </if>
+            <if test="fontColor != null">
+                #{fontColor},
+            </if>
+        </trim>
     </insert>
     
     <update id="updateOneStyle" parameterType="pers.tornado.datav.entity.DatavTemplateComponentStyleVo">
@@ -45,6 +98,9 @@
             </if>
             <if test="titlepos != null">
                 component_titlepos =#{titlepos},
+            </if>
+            <if test="fontColor != null">
+                component_fontColor =#{fontColor},
             </if>
         </set>
         where templateID =#{templateID} and component_index =#{index}

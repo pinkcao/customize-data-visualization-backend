@@ -8,6 +8,20 @@ public class DatavTemplateComponentStyleVo {
     private boolean legendvis;
     private boolean titlevis;
     private String titlepos;
+    private String fontColor;
+
+    @Override
+    public String toString() {
+        return "DatavTemplateComponentStyleVo{" +
+                "templateID=" + templateID +
+                ", index=" + index +
+                ", opacity=" + opacity +
+                ", legendvis=" + legendvis +
+                ", titlevis=" + titlevis +
+                ", titlepos='" + titlepos + '\'' +
+                ", fontColor='" + fontColor + '\'' +
+                '}';
+    }
 
     public DatavTemplateComponentStyleVo() {
     }
@@ -19,18 +33,15 @@ public class DatavTemplateComponentStyleVo {
         this.legendvis = datavTemplateComponent.getStyle().isLegendvis();
         this.titlevis = datavTemplateComponent.getStyle().isTitlevis();
         this.titlepos = datavTemplateComponent.getStyle().getTitlepos();
+        this.fontColor = datavTemplateComponent.getStyle().getFontColor();
     }
 
-    @Override
-    public String toString() {
-        return "DatavTemplateComponentStyleVo{" +
-                "templateID=" + templateID +
-                ", index=" + index +
-                ", opacity=" + opacity +
-                ", legendvis=" + legendvis +
-                ", titlevis=" + titlevis +
-                ", titlepos='" + titlepos + '\'' +
-                '}';
+    public String getFontColor() {
+        return fontColor;
+    }
+
+    public void setFontColor(String fontColor) {
+        this.fontColor = fontColor;
     }
 
     public int getTemplateID() {

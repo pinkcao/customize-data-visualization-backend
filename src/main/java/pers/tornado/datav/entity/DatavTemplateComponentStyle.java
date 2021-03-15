@@ -6,6 +6,8 @@ public class DatavTemplateComponentStyle {
     private boolean legendvis;
     private boolean titlevis;
     private String titlepos;
+    private String fontColor;
+
 
     @Override
     public String toString() {
@@ -14,6 +16,7 @@ public class DatavTemplateComponentStyle {
                 ", legendvis=" + legendvis +
                 ", titlevis=" + titlevis +
                 ", titlepos='" + titlepos + '\'' +
+                ", fontColor='" + fontColor + '\'' +
                 '}';
     }
 
@@ -35,6 +38,14 @@ public class DatavTemplateComponentStyle {
     }
 
     public DatavTemplateComponentStyle() {
+    }
+
+    public String getFontColor() {
+        return fontColor;
+    }
+
+    public void setFontColor(String fontColor) {
+        this.fontColor = fontColor;
     }
 
     public boolean isLegendvis() {

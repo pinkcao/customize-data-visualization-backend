@@ -38,20 +38,20 @@ public class DatavTemplateComponentController {
      *
      *
      * */
-    @RequestMapping("/componentTrans")
-    public Object componentTrans(@RequestBody Map<String, List<DatavTemplateComponent>> componentList) {
-        List<DatavTemplateComponent> tempComponentList = componentList.get("componentList");
-        for (DatavTemplateComponent datavTemplateComponent : tempComponentList) {
-            datavTemplateComponentStyleService.insertOneStyle(datavTemplateComponent.getTemplateID(), datavTemplateComponent.getIndex());
-            DatavTemplateComponentDataSource tempSource = datavTemplateComponent.getDataSource();
-            DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo = new DatavTemplateComponentDataSourceVo(tempSource);
-            datavTemplateComponentDataSourceVo.setTemplateID(datavTemplateComponent.getTemplateID());
-            datavTemplateComponentDataSourceVo.setIndex(datavTemplateComponent.getIndex());
-            datavTemplateComponentDataSourceService.insertOneDataSource(datavTemplateComponentDataSourceVo);
-            datavTemplateComponentService.insertOneTemplateComponent(datavTemplateComponent);
-        }
-        return componentList.get("componentList").get(0);
-    }
+//    @RequestMapping("/componentTrans")
+//    public Object componentTrans(@RequestBody Map<String, List<DatavTemplateComponent>> componentList) {
+//        List<DatavTemplateComponent> tempComponentList = componentList.get("componentList");
+//        for (DatavTemplateComponent datavTemplateComponent : tempComponentList) {
+//            datavTemplateComponentStyleService.insertOneStyle(datavTemplateComponent.getTemplateID(), datavTemplateComponent.getIndex());
+//            DatavTemplateComponentDataSource tempSource = datavTemplateComponent.getDataSource();
+//            DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo = new DatavTemplateComponentDataSourceVo(tempSource);
+//            datavTemplateComponentDataSourceVo.setTemplateID(datavTemplateComponent.getTemplateID());
+//            datavTemplateComponentDataSourceVo.setIndex(datavTemplateComponent.getIndex());
+//            datavTemplateComponentDataSourceService.insertOneDataSource(datavTemplateComponentDataSourceVo);
+//            datavTemplateComponentService.insertOneTemplateComponent(datavTemplateComponent);
+//        }
+//        return componentList.get("componentList").get(0);
+//    }
 
     @RequestMapping("/getComponent")
     public Object getComponent(@RequestParam(value = "templateID") int templateID) {
@@ -66,13 +66,16 @@ public class DatavTemplateComponentController {
     @RequestMapping("/appendComponent")
     public Object appendComponent(@RequestBody DatavTemplateComponent datavTemplateComponent) {
         Map<String, Object> result = new HashMap<>();
+//        System.out.println(datavTemplateComponent.toString());
         int componentIndex = datavTemplateComponentService.getTemplateBiggestIndex(datavTemplateComponent.getTemplateID());
         int componentZindex = datavTemplateComponentService.getTemplateBiggestZindex(datavTemplateComponent.getTemplateID());
         int componentIndexAndZindex = componentIndex > componentZindex ? componentIndex +1 : componentZindex +1;
         datavTemplateComponent.setIndex(componentIndexAndZindex);
         datavTemplateComponent.setZindex(componentIndexAndZindex);
         datavTemplateComponentService.insertOneTemplateComponent(datavTemplateComponent);
-        datavTemplateComponentStyleService.insertOneStyle(datavTemplateComponent.getTemplateID(), datavTemplateComponent.getIndex());
+        DatavTemplateComponentStyleVo datavTemplateComponentStyleVo = new DatavTemplateComponentStyleVo(datavTemplateComponent);
+        System.out.println(datavTemplateComponentStyleVo.toString());
+        datavTemplateComponentStyleService.insertOneStyle(datavTemplateComponentStyleVo);
         DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo = new DatavTemplateComponentDataSourceVo(datavTemplateComponent.getDataSource());
         datavTemplateComponentDataSourceVo.setTemplateID(datavTemplateComponent.getTemplateID());
         datavTemplateComponentDataSourceVo.setIndex(datavTemplateComponent.getIndex());

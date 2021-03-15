@@ -8,7 +8,7 @@ import pers.tornado.datav.entity.DatavTemplateComponentStyleVo;
 @Mapper
 public interface DatavTemplateComponentStyleMapper {
 
-    int insertOneStyle(int templateID, int index);
+    int insertOneStyle(DatavTemplateComponentStyleVo datavTemplateComponentStyleVo);
     DatavTemplateComponentStyle selectStyleByIndex(int templateID, int component_index);
     int updateOneStyle(DatavTemplateComponentStyleVo datavTemplateComponentStyleVo);
 
