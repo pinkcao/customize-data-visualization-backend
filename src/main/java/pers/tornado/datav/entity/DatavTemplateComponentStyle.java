@@ -3,8 +3,8 @@ package pers.tornado.datav.entity;
 public class DatavTemplateComponentStyle {
 
     private float opacity;
-    private boolean legendvis;
-    private boolean titlevis;
+    private Boolean legendvis;
+    private Boolean titlevis;
     private String titlepos;
     private String fontColor;
 
@@ -48,19 +48,19 @@ public class DatavTemplateComponentStyle {
         this.fontColor = fontColor;
     }
 
-    public boolean isLegendvis() {
+    public Boolean getLegendvis() {
         return legendvis;
     }
 
-    public void setLegendvis(boolean legendvis) {
+    public void setLegendvis(Boolean legendvis) {
         this.legendvis = legendvis;
     }
 
-    public boolean isTitlevis() {
+    public Boolean getTitlevis() {
         return titlevis;
     }
 
-    public void setTitlevis(boolean titlevis) {
+    public void setTitlevis(Boolean titlevis) {
         this.titlevis = titlevis;
     }
 }

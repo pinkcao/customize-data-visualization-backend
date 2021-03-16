@@ -5,8 +5,8 @@ public class DatavTemplateComponentStyleVo {
     private int templateID;
     private int index;
     private float opacity;
-    private boolean legendvis;
-    private boolean titlevis;
+    private Boolean legendvis;
+    private Boolean titlevis;
     private String titlepos;
     private String fontColor;
 
@@ -30,8 +30,8 @@ public class DatavTemplateComponentStyleVo {
         this.templateID = datavTemplateComponent.getTemplateID();
         this.index = datavTemplateComponent.getIndex();
         this.opacity = datavTemplateComponent.getStyle().getOpacity();
-        this.legendvis = datavTemplateComponent.getStyle().isLegendvis();
-        this.titlevis = datavTemplateComponent.getStyle().isTitlevis();
+        this.legendvis = datavTemplateComponent.getStyle().getLegendvis();
+        this.titlevis = datavTemplateComponent.getStyle().getTitlevis();
         this.titlepos = datavTemplateComponent.getStyle().getTitlepos();
         this.fontColor = datavTemplateComponent.getStyle().getFontColor();
     }
@@ -67,23 +67,21 @@ public class DatavTemplateComponentStyleVo {
     public void setOpacity(float opacity) {
         this.opacity = opacity;
     }
-
-    public boolean isLegendvis() {
+    public Boolean getLegendvis() {
         return legendvis;
     }
 
-    public void setLegendvis(boolean legendvis) {
+    public void setLegendvis(Boolean legendvis) {
         this.legendvis = legendvis;
     }
 
-    public boolean isTitlevis() {
+    public Boolean getTitlevis() {
         return titlevis;
     }
 
-    public void setTitlevis(boolean titlevis) {
+    public void setTitlevis(Boolean titlevis) {
         this.titlevis = titlevis;
     }
-
     public String getTitlepos() {
         return titlepos;
     }

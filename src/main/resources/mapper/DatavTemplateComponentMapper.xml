@@ -90,7 +90,9 @@
             <if test="deg != null">
                 component_deg =#{deg},
             </if>
-
+            <if test="active != null">
+                component_active =#{active},
+            </if>
         </set>
         where templateID =#{templateID} and component_index =#{index}
     </update>
