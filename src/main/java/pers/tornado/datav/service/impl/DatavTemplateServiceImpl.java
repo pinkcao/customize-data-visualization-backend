@@ -54,4 +54,8 @@ public class DatavTemplateServiceImpl implements DatavTemplateService {
         return datavTemplateMapper.getOneTemplate(templateID);
     }
 
+    @Override
+    public int deleteAllDisabledTemplate() {
+        return datavTemplateMapper.deleteAllDisabledTemplate();
+    }
 }

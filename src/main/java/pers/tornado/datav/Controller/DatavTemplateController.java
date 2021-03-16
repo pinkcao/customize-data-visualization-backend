@@ -82,4 +82,9 @@ public class DatavTemplateController {
         datavTemplateService.spliceTemplate(datavTemplate);
         return datavTemplateService.getDatavUserTemplate(datavTemplate.getUserID());
     }
+
+    @RequestMapping("deleteAllDisabledTemplate")
+    public Object deleteAllDisabledTemplate() {
+        return datavTemplateService.deleteAllDisabledTemplate();
+    }
 }

@@ -50,4 +50,24 @@
         select * from datav_template
         where templateID =#{templateID}
     </select>
+
+    <delete id="deleteAllDisabledTemplate">
+        delete from datav_template_component
+        where templateID IN (
+            select templateID from datav_template
+            where disabled = 1
+        );
+        delete from datav_template_component_style
+        where templateID IN (
+            select templateID from datav_template
+            where disabled = 1
+        );
+        delete from datav_template_component_datasource
+        where templateID IN (
+            select templateID from datav_template
+            where disabled = 1
+        );
+        delete from datav_template
+        where disabled = 1
+    </delete>
 </mapper>

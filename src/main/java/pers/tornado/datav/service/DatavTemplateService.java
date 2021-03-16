@@ -14,5 +14,5 @@ public interface DatavTemplateService {
     int insertUserTemplate(DatavTemplate datavTemplate);
     int insertUserTemplateScreenDef(int templateID);
     int spliceTemplate(DatavTemplate datavTemplate);
-
+    int deleteAllDisabledTemplate();
 }
