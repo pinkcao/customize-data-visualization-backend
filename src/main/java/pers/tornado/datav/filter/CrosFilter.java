@@ -33,10 +33,15 @@ public class CrosFilter implements Filter {
                         + "Last-Modified,"
                         + "Cache-Control,"
                         + "Expires,"
+                        + "Authorization,"
                         + "Content-Type,"
                         + "X-E4M-With");
 
-
+        //cope with preflight
+        System.out.println("过滤器生效");
+        if (req.getMethod().equals("OPTIONS")) {
+            res.setStatus(200);
+        }
         chain.doFilter(request, response);
     }
 }

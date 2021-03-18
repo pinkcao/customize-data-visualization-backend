@@ -24,7 +24,6 @@ public class ComponentTabDataServiceImpl implements ComponentTabDataService {
     @Override
     @Cacheable(key = "'defaultTabData'")
     public List<ComponentTabData> getComponentTabData() {
-        System.out.println("oh my fucking lord, got Redis configs done within 1 hour");
         return componentTabDataMapper.getAllComponentTabData();
     }
 }
