@@ -13,12 +13,12 @@
     </resultMap>
 
     <select id="getAllComponentDetail" resultMap="componentDetailMapperMap">
-        select * from componentDetail
+        select * from component_detail
         where disabled = 0
     </select>
 
     <select id="selectByComponentTabDataDetailID" parameterType="int" resultMap="componentDetailMapperMap">
-        select * from componentDetail
+        select * from component_detail
         where componentTabDataDetailID =#{value} and disabled = 0
     </select>
 

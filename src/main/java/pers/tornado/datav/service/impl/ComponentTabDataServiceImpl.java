@@ -22,7 +22,7 @@ public class ComponentTabDataServiceImpl implements ComponentTabDataService {
     }
 
     @Override
-    @Cacheable(key = "'defaultTabData'")
+    @Cacheable(key = "'allTabData'")
     public List<ComponentTabData> getComponentTabData() {
         return componentTabDataMapper.getAllComponentTabData();
     }

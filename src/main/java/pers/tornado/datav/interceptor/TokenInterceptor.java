@@ -14,10 +14,13 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        // cope with preflight request
         if (request.getMethod().equals("OPTIONS")) {
-            System.out.println("pre-flight request,pass");
+//            System.out.println("pre-flight request,pass");
             return true;
         }
+
+        //preset 401
         response.setStatus(401);
 //        System.out.println(response.getStatus());
         System.out.println("拦截器生效");
@@ -26,7 +29,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 //        System.out.println(interceptFlag);
         if (interceptFlag >= 0) {
             response.setStatus(200);
-            System.out.println("到这里终止了");
+//            System.out.println("到这里终止了");
             return true;
         }
 //            if (interceptFlag == null) {

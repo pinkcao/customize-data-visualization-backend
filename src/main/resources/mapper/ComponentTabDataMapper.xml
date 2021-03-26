@@ -11,7 +11,7 @@
     </resultMap>
 
     <select id="getAllComponentTabData" resultMap="componentTabDataMapperMap">
-        select * from componentTabData
+        select * from component_tab_data
         where disabled = 0
     </select>
 

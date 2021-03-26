@@ -5,7 +5,7 @@ import pers.tornado.datav.entity.DatavTemplateComponentDataSourceVo;
 
 public interface DatavTemplateComponentDataSourceService {
 
-    int insertOneDataSource (DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo);
-    int updateOneDataSource (DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo);
+    int insertOneDataSource(DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo);
+    int updateOneDataSource(DatavTemplateComponentDataSourceVo datavTemplateComponentDataSourceVo);
 
 }
