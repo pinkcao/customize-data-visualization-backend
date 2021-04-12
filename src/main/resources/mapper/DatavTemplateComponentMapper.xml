@@ -67,8 +67,12 @@
     </update>
 
     <update id="spliceOneComponent" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
-        update datav_template_component set disabled = 1
-        where templateID =#{templateID} and component_index =#{index}
+        delete from datav_template_component
+        where templateID =#{templateID} and component_index =#{index};
+        delete from datav_template_component_style
+        where templateID =#{templateID} and component_index =#{index};
+        delete from datav_template_component_datasource
+        where templateID =#{templateID} and component_index =#{index};
     </update>
 
     <update id="adjustComponent" parameterType="pers.tornado.datav.entity.DatavTemplateComponent">
