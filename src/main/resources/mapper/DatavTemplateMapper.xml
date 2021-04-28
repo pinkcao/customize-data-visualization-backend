@@ -68,6 +68,11 @@
             where disabled = 1
         );
         delete from datav_template
-        where disabled = 1
+        where disabled = 1;
+        delete from datav_template_screendef
+        where templateID IN (
+            select templateID from datav_template
+            where disabled = 1
+        )
     </delete>
 </mapper>
