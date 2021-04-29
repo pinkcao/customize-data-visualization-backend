@@ -18,7 +18,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(getTokenInterceptor())
                 .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/user/**");
+                .excludePathPatterns("/api/user/**")
+                .excludePathPatterns("/testJsonData");
     }
 
 }

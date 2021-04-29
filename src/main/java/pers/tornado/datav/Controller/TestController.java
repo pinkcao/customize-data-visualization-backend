@@ -17,6 +17,8 @@ import java.util.Map;
 public class TestController {
 
     private final TestService testService;
+    private final String[] departmentName = {"finance", "HR", "sales", "QA", "develop", "product", "market", "departmentA", "departmentB"};
+    private final String[] year = {"2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"};
 
     public TestController(TestService testService) {
         this.testService = testService;
@@ -63,5 +65,29 @@ public class TestController {
     public Object testGetListMapJson(@RequestBody List<TestList> testList){
         System.out.println(testList.toString());
         return 0;
+    }
+
+    @RequestMapping("testJsonData")
+    public Object testJsonData() {
+        int scaleX = (int)(Math.random() * 4) + 2;
+        int scaleY = (int)(Math.random() * 6) + 2;
+        ArrayList<ArrayList> result = new ArrayList<>();
+        ArrayList<String> firstRow = new ArrayList<>();
+        firstRow.add("department");
+        for (int i = 0; i < scaleX; i++) {
+            firstRow.add(year[i]);
+        }
+        result.add(firstRow);
+
+        for (int i = 0; i < scaleY; i++) {
+            ArrayList<Object> temp = new ArrayList<>();
+            temp.add(departmentName[i]);
+            for (int j = 0; j < scaleX; j++) {
+                temp.add((int)(Math.random() * 500) + 100);
+            }
+            result.add(temp);
+        }
+//        System.out.println(result.toString());
+        return result;
     }
 }

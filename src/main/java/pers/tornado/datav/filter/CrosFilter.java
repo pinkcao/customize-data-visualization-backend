@@ -38,7 +38,7 @@ public class CrosFilter implements Filter {
                         + "X-E4M-With");
 
         //cope with preflight
-        System.out.println("过滤器生效");
+//        System.out.println("过滤器生效");
         if (req.getMethod().equals("OPTIONS")) {
             res.setStatus(200);
         }
