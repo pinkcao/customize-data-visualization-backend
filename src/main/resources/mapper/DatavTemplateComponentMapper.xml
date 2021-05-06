@@ -62,6 +62,27 @@
             <if test="subTitle != null">
                 component_subTitle =#{subTitle},
             </if>
+            <if test="width != null">
+                component_width =#{width},
+            </if>
+            <if test="height != null">
+                component_height =#{height},
+            </if>
+            <if test="top != null">
+                component_top =#{top},
+            </if>
+            <if test="left != null">
+                component_left =#{left},
+            </if>
+            <if test="deg != null">
+                component_deg =#{deg},
+            </if>
+            <if test="active != null">
+                component_active =#{active},
+            </if>
+            <if test="zindex != null">
+                component_zindex =#{zindex}
+            </if>
         </set>
         where templateID =#{templateID} and component_index =#{index}
     </update>
